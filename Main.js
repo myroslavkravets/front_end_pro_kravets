@@ -1,41 +1,24 @@
-// Завдання 1
-for (let i = 20; i <= 30; i += 0.5) {
-    console.log(i);
+// ЗАВДАННЯ 1
+let text = "Hello World";
+let charsToRemove = "ld";
+for (let char of charsToRemove) {
+    text = text.replace(new RegExp(char, 'g'), '');
+}console.log(text);
+// ЗАВДАННЯ 2
+function averageOfNumbers(arr) {
+    const numbers = arr.filter(item => typeof item === 'number');
+    if (numbers.length === 0) return 0;
+    const sum = numbers.reduce((acc, num) => acc + num, 0);
+    return sum / numbers.length;
 }
+const mixedArray = [1, 'hello', true, 5, null, 10, 'world', 3];
+console.log(averageOfNumbers(mixedArray));
+// ЗАВДАННЯ 3
+function removeElement(array, item) {
+    return array.filter(element => element !== item);
+}
+const array = [1, 3, 4, 6, 2, 5, 7];
+const newArray = removeElement(array, 4);
+console.log(newArray);
 
-// // Завдання 2
-const rate = 26; // Курс долара (1 долар = 26 гривень)
-for (let dollars = 10; dollars <= 100; dollars += 10) {
-    let hryvnias = dollars * rate;
-    console.log(`${dollars} доларів коштує ${hryvnias} гривень`);
-}
-// // Завдання 3
-const N = +prompt("Введіть ціле число:");
-let output = ``;
-if (N >= 1) {
-    for (let i = 1; i <= 100; i++) {
-        if (i * i <= N) {
-            output += i + ' ';
-        }
-    }
-}
-console.log(output.trim());
-// // Завдання 4
-const number = +prompt("Введіть ціле число:");
-let isPrime = true;
-if (number <= 1) {
-    isPrime = false;
-} else {
-    // Перевіряємо всі числа від 2 до number - 1
-    for (let i = 2; i < number; i++) {
-        if (number % i === 0) {
-            isPrime = false;
-            break;
-        }
-    }
-}
-if (isPrime) {
-    console.log(`${number} є простим числом.`);
-} else {
-    console.log(`${number} не є простим числом.`);
-}
+
