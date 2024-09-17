@@ -1,9 +1,14 @@
 // ЗАВДАННЯ 1
+function removeChars(text, charsToRemove) {
+    for (let char of charsToRemove)
+    { text = text.replace(new RegExp(char, 'g'), '');
+    }
+    return text;
+}
 let text = "Hello World";
-let charsToRemove = "ld";
-for (let char of charsToRemove) {
-    text = text.replace(new RegExp(char, 'g'), '');
-}console.log(text);
+let charsToRemove = ['l', 'd'];
+let result = removeChars(text, charsToRemove);
+console.log(result);
 // ЗАВДАННЯ 2
 function averageOfNumbers(arr) {
     const numbers = arr.filter(item => typeof item === 'number');
