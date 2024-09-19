@@ -1,29 +1,38 @@
-// ЗАВДАННЯ 1
-function removeChars(text, charsToRemove) {
-    for (let char of charsToRemove)
-    { text = text.replace(new RegExp(char, 'g'), '');
-    }
-    return text;
+// Завдання 1
+function sum() {
+    let total = 0;
+    return function(value) {
+        total += value;
+        return total;
+    };
 }
-let text = "Hello World";
-let charsToRemove = ['l', 'd'];
-let result = removeChars(text, charsToRemove);
+const add = sum();
+console.log(add(4));  // 4
+console.log(add(6));  // 10
+console.log(add(10)); // 20
+console.log(add(7));  // 27
+// Завдання 2
+function multiply(a) {
+    return function(b) {
+        return a * b;
+    };
+}
+const result = multiply(5)(2);
 console.log(result);
-// ЗАВДАННЯ 2
-function averageOfNumbers(arr) {
-    const numbers = arr.filter(item => typeof item === 'number');
-    if (numbers.length === 0) return 0;
-    const sum = numbers.reduce((acc, num) => acc + num, 0);
-    return sum / numbers.length;
-}
-const mixedArray = [1, 'hello', true, 5, null, 10, 'world', 3];
-console.log(averageOfNumbers(mixedArray));
-// ЗАВДАННЯ 3
-function removeElement(array, item) {
-    return array.filter(element => element !== item);
-}
-const array = [1, 3, 4, 6, 2, 5, 7];
-const newArray = removeElement(array, 4);
-console.log(newArray);
 
+// Завдання 3
+function askNumber() {
+    let userInput;
+    for (let i = 0; i < 10; i++) {
+        userInput = +prompt("Введіть число більше 100:");
+        if (userInput > 100) {
+            break;
+        }
+        if (i === 9) {
+            console.log("Досягнуто максимальну кількість ітерацій.");
+        }
+    }
 
+    console.log(`Останнє введене значення: ${userInput}`);
+}
+askNumber();
