@@ -36,3 +36,4 @@ function askNumber() {
     console.log(`Останнє введене значення: ${userInput}`);
 }
 askNumber();
+// The end
