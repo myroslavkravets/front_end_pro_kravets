@@ -19,6 +19,6 @@ function getTotalSalary(department) {
 }
 
 let totalSalary = getTotalSalary(company);
-console.log(totalSalary); // Виведе загальну суму зарплат
+console.log(totalSalary);
 
 
