@@ -1,23 +1,50 @@
-const taskList = document.getElementById('taskList');
-const addTaskBtn = document.getElementById('addTaskBtn');
-const newTaskInput = document.getElementById('newTaskInput');
+function validateForm() {
+    // Очищуємо попередні помилки
+    document.getElementById('nameError').textContent = "";
+    document.getElementById('messageError').textContent = "";
+    document.getElementById('phoneError').textContent = "";
+    document.getElementById('emailError').textContent = "";
 
-// Додавання нового завдання
-addTaskBtn.addEventListener('click', () => {
-    const taskText = newTaskInput.value.trim();
-    if (taskText !== "") {
-        const newTask = document.createElement('li');
-        newTask.className = 'task-item';
-        newTask.innerHTML = `${taskText} <button class="delete-btn">Видалити</button>`;
-        taskList.appendChild(newTask);
-        newTaskInput.value = "";
-    }
-});
+    // Отримуємо значення полів
+    const name = document.getElementById('name').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const email = document.getElementById('email').value.trim();
 
-// Делегування подій для видалення завдань
-taskList.addEventListener('click', (event) => {
-    if (event.target.classList.contains('delete-btn')) {
-        const taskItem = event.target.parentElement;
-        taskList.removeChild(taskItem);
+    let isValid = true;
+
+    // Валідація поля Name
+    if (name === "") {
+        document.getElementById('nameError').textContent = "Name is required";
+        isValid = false;
     }
-});
+
+    // Валідація поля Message
+    if (message.length < 5) {
+        document.getElementById('messageError').textContent = "Message must be at least 5 characters";
+        isValid = false;
+    }
+
+    // Валідація поля Phone number
+    const phoneRegex = /^\+380\d{9}$/;
+    if (!phoneRegex.test(phone)) {
+        document.getElementById('phoneError').textContent = "Phone number must start with +380 and be followed by 9 digits";
+        isValid = false;
+    }
+
+    // Валідація поля Email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = "Email must contain @ and a dot (.)";
+        isValid = false;
+    }
+
+    // Якщо всі поля валідні, виводимо дані в консоль
+    if (isValid) {
+        console.log("Name:", name);
+        console.log("Message:", message);
+        console.log("Phone number:", phone);
+        console.log("Email:", email);
+        alert("Message sent successfully!");
+    }
+}

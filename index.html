@@ -2,20 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TODO Лист</title>
+    <title>Форма з валідацією</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
-<h2>TODO Лист</h2>
-<ul id="taskList">
-    <li class="task-item">Завдання 1 <button class="delete-btn">Видалити</button></li>
-    <li class="task-item">Завдання 2 <button class="delete-btn">Видалити</button></li>
-    <li class="task-item">Завдання 3 <button class="delete-btn">Видалити</button></li>
-</ul>
-<input type="text" id="newTaskInput" placeholder="Додати нове завдання">
-<button id="addTaskBtn">Додати</button>
+<div class="form-container">
+    <h2>We would like to help you</h2>
+    <div class="form-field">
+        <input type="text" id="name" placeholder="Name">
+        <div class="error-message" id="nameError"></div>
+    </div>
+    <div class="form-field">
+        <textarea id="message" placeholder="Message"></textarea>
+        <div class="error-message" id="messageError"></div>
+    </div>
+    <h4>HOW TO ANSWER YOU?</h4>
+    <div class="form-field">
+        <input type="text" id="phone" placeholder="Phone number">
+        <div class="error-message" id="phoneError"></div>
+    </div>
+    <div class="form-field">
+        <input type="text" id="email" placeholder="Email">
+        <div class="error-message" id="emailError"></div>
+    </div>
+    <button class="submit-btn" onclick="validateForm()">Send message</button>
+</div>
 
 
 
