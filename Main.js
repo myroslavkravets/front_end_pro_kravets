@@ -1,16 +1,9 @@
-let url = '';
+const buttonContainer = document.getElementById('buttonContainer');
+const message = document.getElementById('message');
 
-function setUrl() {
-    url = prompt("Введіть посилання:");
-    if (url) {
-        alert("Посилання збережено!");
+buttonContainer.addEventListener('click', (event) => {
+    if (event.target.classList.contains('button')) {
+        const buttonName = event.target.getAttribute('data-button');
+        message.textContent = `Клікнуто на кнопку: ${buttonName}`;
     }
-}
-
-function redirectToUrl() {
-    if (url) {
-        window.location.href = url;
-    } else {
-        alert("Спочатку введіть посилання!");
-    }
-}
+});
