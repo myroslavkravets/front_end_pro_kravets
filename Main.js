@@ -1,11 +1,16 @@
-function displayRandomImage() {
-    // Масив з іменами файлів зображень
-    const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
+let url = '';
 
-    // Випадковий індекс для вибору зображення
-    const randomIndex = Math.floor(Math.random() * images.length);
+function setUrl() {
+    url = prompt("Введіть посилання:");
+    if (url) {
+        alert("Посилання збережено!");
+    }
+}
 
-    // Встановлюємо випадкове зображення
-    const randomImage = document.getElementById("randomImage");
-    randomImage.src = "images/" + images[randomIndex]; // Вкажіть шлях до папки з зображеннями
+function redirectToUrl() {
+    if (url) {
+        window.location.href = url;
+    } else {
+        alert("Спочатку введіть посилання!");
+    }
 }
