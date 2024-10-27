@@ -1,13 +1,11 @@
-let isColorChanged = false; // Змінна для відстеження стану кольору
+function displayRandomImage() {
+    // Масив з іменами файлів зображень
+    const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg"];
 
-function toggleTextColor() {
-    const textBlock = document.getElementById("text-block");
+    // Випадковий індекс для вибору зображення
+    const randomIndex = Math.floor(Math.random() * images.length);
 
-    if (isColorChanged) {
-        textBlock.style.color = "black"; // Повертаємо попередній колір
-    } else {
-        textBlock.style.color = "blue"; // Змінюємо на новий колір
-    }
-
-    isColorChanged = !isColorChanged; // Змінюємо стан
+    // Встановлюємо випадкове зображення
+    const randomImage = document.getElementById("randomImage");
+    randomImage.src = "images/" + images[randomIndex]; // Вкажіть шлях до папки з зображеннями
 }
