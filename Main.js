@@ -1,31 +1,23 @@
-// Початковий час у секундах (наприклад, 85 секунд)
-let timeInSeconds = 85;
+const apiKey = 'b7a62f2d277e7fffc28b4d2918aa87ac';
+const city = 'Dnipro';
 
-function startTimer() {
-    const timerElement = document.getElementById('timer');
+async function getWeather() {
+    try {
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Dnipro&appid=b7a62f2d277e7fffc28b4d2918aa87ac&units=metric&lang=uka`);
+        if (!response.ok) throw new Error('Не вдалося отримати дані');
 
-    // Функція для оновлення часу на екрані
-    function updateTimer() {
-        // Розрахунок хвилин та секунд
-        const minutes = Math.floor(timeInSeconds / 60);
-        const seconds = timeInSeconds % 60;
+        const data = await response.json();
 
-        // Форматування часу у форматі мм:сс
-        timerElement.textContent =
-            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-        // Зупинка таймера, якщо час закінчився
-        if (timeInSeconds <= 0) {
-            clearInterval(timerInterval);
-        } else {
-            timeInSeconds--;
-        }
+        document.getElementById('temperature').innerText = `Температура: ${data.main.temp} °C`;
+        document.getElementById('humidity').innerText = `Вологість: ${data.main.humidity} %`;
+        document.getElementById('pressure').innerText = `Тиск: ${data.main.pressure} гПа`;
+        document.getElementById('wind').innerText = `Вітер: ${data.wind.speed} м/с`;
+    } catch (error) {
+        console.error('Помилка:', error);
+        document.getElementById('weather-info').innerText = 'Не вдалося завантажити дані.';
     }
-
-    // Запускаємо таймер з інтервалом у 1 секунду
-    const timerInterval = setInterval(updateTimer, 1000);
-    updateTimer(); // Оновлюємо відразу, щоб не було затримки
 }
 
-// Запускаємо таймер
-startTimer();
+document.getElementById('update-weather').addEventListener('click', getWeather);
+
+window.onload = getWeather;

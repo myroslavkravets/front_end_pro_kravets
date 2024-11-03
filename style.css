@@ -1,4 +1,57 @@
-.timer {
-    font-size: 2em;
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.weather-widget {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.weather-widget h1 {
+    font-size: 24px;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+#weather-info p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+#temperature {
+    font-size: 20px;
     font-weight: bold;
+    color: #1a73e8;
+}
+
+#humidity, #pressure, #wind {
+    font-size: 16px;
+    color: #666;
+}
+
+button#update-weather {
+    margin-top: 20px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #1a73e8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button#update-weather:hover {
+    background-color: #155ab6;
 }
