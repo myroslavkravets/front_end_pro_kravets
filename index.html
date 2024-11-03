@@ -1,37 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Форма з валідацією</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lesson 14</title>
 </head>
 <body>
+<div class="slider">
+    <div class="slide"><img src="images/1.jpg" alt="Slide 1" style="width:10%"></div>
+    <div class="slide"><img src="images/2.jpg" alt="Slide 2" style="width:10%"></div>
+    <div class="slide"><img src="images/3.jpg" alt="Slide 3" style="width:10%"></div>
 
+    <button class="prev" onclick="changeSlide(-1)">❮</button>
+    <button class="next" onclick="changeSlide(1)">❯</button>
 
-<div class="form-container">
-    <h2>We would like to help you</h2>
-    <div class="form-field">
-        <input type="text" id="name" placeholder="Name">
-        <div class="error-message" id="nameError"></div>
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
-    <div class="form-field">
-        <textarea id="message" placeholder="Message"></textarea>
-        <div class="error-message" id="messageError"></div>
-    </div>
-    <h4>HOW TO ANSWER YOU?</h4>
-    <div class="form-field">
-        <input type="text" id="phone" placeholder="Phone number">
-        <div class="error-message" id="phoneError"></div>
-    </div>
-    <div class="form-field">
-        <input type="text" id="email" placeholder="Email">
-        <div class="error-message" id="emailError"></div>
-    </div>
-    <button class="submit-btn" onclick="validateForm()">Send message</button>
 </div>
-
-
-
-  <script src="Main.js"></script>
 </body>
+<script src="Main.js"></script>
 </html>
+
+
+
