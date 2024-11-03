@@ -1,33 +1,17 @@
-class Calculator {
-    // Метод додавання
-    add(a, b) {
-        return a + b;
+class Coach {
+    constructor(name, specialization, rating) {
+        this.name = name;
+        this.specialization = specialization;
+        this.rating = rating;
     }
 
-    // Метод віднімання
-    subtract(a, b) {
-        return a - b;
-    }
-
-    // Метод множення
-    multiply(a, b) {
-        return a * b;
-    }
-
-    // Метод ділення
-    divide(a, b) {
-        if (b === 0) {
-            return "Ділення на нуль неможливе";
-        }
-        return a / b;
+    displayInfo() {
+        console.log(`Coach: ${this.name}, Specialization: ${this.specialization}, Rating: ${this.rating}`);
     }
 }
 
-// Приклад використання
-const calc = new Calculator();
+const coach1 = new Coach('John Doe', 'Fitness', 4.7);
+const coach2 = new Coach('Alice Smith', 'Yoga', 4.9);
 
-console.log(calc.add(5, 3)); // 8
-console.log(calc.subtract(10, 4)); // 6
-console.log(calc.multiply(3, 6)); // 18
-console.log(calc.divide(8, 2)); // 4
-console.log(calc.divide(8, 0)); // Ділення на нуль неможливе
+coach1.displayInfo(); // "Coach: John Doe, Specialization: Fitness, Rating: 4.7"
+coach2.displayInfo(); // "Coach: Alice Smith, Specialization: Yoga, Rating: 4.9"
