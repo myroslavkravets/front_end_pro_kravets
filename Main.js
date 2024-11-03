@@ -1,81 +1,85 @@
-document.addEventListener("DOMContentLoaded", loadTodos);
+class Student {
+    constructor(firstName, lastName, birthYear, grades) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthYear = birthYear;
+        this.grades = grades;
+        this.attendance = new Array(25).fill(null); // Масив для відвідуваності з 25 елементами, всі значення спочатку null
+    }
 
-const todoInput = document.getElementById("todo-input");
-const addTodoButton = document.getElementById("add-todo");
-const todoList = document.getElementById("todo-list");
+    getAge() {
+        const currentYear = new Date().getFullYear();
+        return currentYear - this.birthYear;
+    }
 
-addTodoButton.addEventListener("click", addTodo);
+    getAverageGrade() {
+        const total = this.grades.reduce((sum, grade) => sum + grade, 0);
+        return total / this.grades.length;
+    }
 
-function addTodo() {
-    const todoText = todoInput.value.trim();
-    if (todoText === "") return;
+    present() {
+        const index = this.attendance.indexOf(null); // Знаходимо перше порожнє місце в масиві
+        if (index !== -1) {
+            this.attendance[index] = true;
+        }
+    }
 
-    const todo = {
-        id: Date.now(),
-        text: todoText,
-        completed: false
-    };
+    absent() {
+        const index = this.attendance.indexOf(null); // Знаходимо перше порожнє місце в масиві
+        if (index !== -1) {
+            this.attendance[index] = false;
+        }
+    }
 
-    const todos = getTodos();
-    todos.push(todo);
-    saveTodos(todos);
-    renderTodoItem(todo);
+    summary() {
+        const averageGrade = this.getAverageGrade();
+        const attendedClasses = this.attendance.filter(value => value === true).length;
+        const totalClasses = this.attendance.filter(value => value !== null).length;
+        const attendanceRate = attendedClasses / totalClasses;
 
-    todoInput.value = "";
+        if (averageGrade > 90 && attendanceRate > 0.9) {
+            return "Молодець!";
+        } else if (averageGrade > 90 || attendanceRate > 0.9) {
+            return "Добре, але можна краще";
+        } else {
+            return "Редиска!";
+        }
+    }
 }
 
-function renderTodoItem(todo) {
-    const listItem = document.createElement("li");
-    listItem.classList.add("todo-item");
+const student1 = new Student("Олександр", "Іваненко", 2000, [95, 85, 92, 88, 90]);
+const student2 = new Student("Марія", "Петренко", 1999, [80, 85, 78, 82, 79]);
+const student3 = new Student("Олег", "Сидоренко", 2001, [98, 99, 97, 96, 100]);
 
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    checkbox.checked = todo.completed;
-    checkbox.addEventListener("change", () => toggleComplete(todo.id));
+student1.present();
+student1.present();
+student1.absent();
+student1.present();
 
-    const text = document.createElement("span");
-    text.classList.add("todo-text");
-    if (todo.completed) text.classList.add("completed");
-    text.textContent = todo.text;
+student2.absent();
+student2.absent();
+student2.present();
+student2.present();
 
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Видалити";
-    deleteButton.classList.add("delete");
-    deleteButton.addEventListener("click", () => deleteTodoItem(todo.id));
+student3.present();
+student3.present();
+student3.present();
+student3.present();
 
-    listItem.append(checkbox, text, deleteButton);
-    todoList.appendChild(listItem);
-}
+console.log(`${student1.firstName} ${student1.lastName}`);
+console.log("Вік:", student1.getAge());
+console.log("Середній бал:", student1.getAverageGrade());
+console.log("Відвідуваність:", student1.attendance);
+console.log("Результат:", student1.summary());
 
-function deleteTodoItem(id) {
-    let todos = getTodos();
-    todos = todos.filter(todo => todo.id !== id);
-    saveTodos(todos);
-    renderTodos();
-}
+console.log(`${student2.firstName} ${student2.lastName}`);
+console.log("Вік:", student2.getAge());
+console.log("Середній бал:", student2.getAverageGrade());
+console.log("Відвідуваність:", student2.attendance);
+console.log("Результат:", student2.summary());
 
-function toggleComplete(id) {
-    const todos = getTodos();
-    const todo = todos.find(todo => todo.id === id);
-    todo.completed = !todo.completed;
-    saveTodos(todos);
-    renderTodos();
-}
-
-function renderTodos() {
-    todoList.innerHTML = "";
-    const todos = getTodos();
-    todos.forEach(renderTodoItem);
-}
-
-function getTodos() {
-    return JSON.parse(localStorage.getItem("todos")) || [];
-}
-
-function saveTodos(todos) {
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function loadTodos() {
-    renderTodos();
-}
+console.log(`${student3.firstName} ${student3.lastName}`);
+console.log("Вік:", student3.getAge());
+console.log("Середній бал:", student3.getAverageGrade());
+console.log("Відвідуваність:", student3.attendance);
+console.log("Результат:", student3.summary());
