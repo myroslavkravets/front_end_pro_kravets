@@ -1,17 +1,43 @@
-class Coach {
-    constructor(name, specialization, rating) {
-        this.name = name;
-        this.specialization = specialization;
-        this.rating = rating;
+class BankAccount {
+    // Конструктор класу з властивістю balance
+    constructor(initialBalance) {
+        this.balance = initialBalance;
     }
 
-    displayInfo() {
-        console.log(`Coach: ${this.name}, Specialization: ${this.specialization}, Rating: ${this.rating}`);
+    // Метод для отримання балансу
+    getBalance() {
+        return this.balance;
+    }
+
+    // Метод для внесення грошей
+    deposit(amount) {
+        if (amount > 0) {
+            this.balance += amount;
+        } else {
+            console.log("Сума внеску повинна бути більше нуля.");
+        }
+    }
+
+    // Метод для зняття грошей
+    withdraw(amount) {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+        } else if (amount > this.balance) {
+            console.log("Недостатньо коштів на рахунку.");
+        } else {
+            console.log("Сума зняття повинна бути більше нуля.");
+        }
     }
 }
 
-const coach1 = new Coach('John Doe', 'Fitness', 4.7);
-const coach2 = new Coach('Alice Smith', 'Yoga', 4.9);
+// Створення екземпляру класу BankAccount
+const account1 = new BankAccount(1000);
 
-coach1.displayInfo(); // "Coach: John Doe, Specialization: Fitness, Rating: 4.7"
-coach2.displayInfo(); // "Coach: Alice Smith, Specialization: Yoga, Rating: 4.9"
+// Виклик методів класу та перевірка балансу
+console.log(account1.getBalance()); // 1000
+
+account1.deposit(500);
+console.log(account1.getBalance()); // 1500
+
+account1.withdraw(200);
+console.log(account1.getBalance()); // 1300
