@@ -1,43 +1,31 @@
-class BankAccount {
-    // Конструктор класу з властивістю balance
-    constructor(initialBalance) {
-        this.balance = initialBalance;
-    }
+// Початковий час у секундах (наприклад, 85 секунд)
+let timeInSeconds = 85;
 
-    // Метод для отримання балансу
-    getBalance() {
-        return this.balance;
-    }
+function startTimer() {
+    const timerElement = document.getElementById('timer');
 
-    // Метод для внесення грошей
-    deposit(amount) {
-        if (amount > 0) {
-            this.balance += amount;
+    // Функція для оновлення часу на екрані
+    function updateTimer() {
+        // Розрахунок хвилин та секунд
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+
+        // Форматування часу у форматі мм:сс
+        timerElement.textContent =
+            `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+        // Зупинка таймера, якщо час закінчився
+        if (timeInSeconds <= 0) {
+            clearInterval(timerInterval);
         } else {
-            console.log("Сума внеску повинна бути більше нуля.");
+            timeInSeconds--;
         }
     }
 
-    // Метод для зняття грошей
-    withdraw(amount) {
-        if (amount > 0 && amount <= this.balance) {
-            this.balance -= amount;
-        } else if (amount > this.balance) {
-            console.log("Недостатньо коштів на рахунку.");
-        } else {
-            console.log("Сума зняття повинна бути більше нуля.");
-        }
-    }
+    // Запускаємо таймер з інтервалом у 1 секунду
+    const timerInterval = setInterval(updateTimer, 1000);
+    updateTimer(); // Оновлюємо відразу, щоб не було затримки
 }
 
-// Створення екземпляру класу BankAccount
-const account1 = new BankAccount(1000);
-
-// Виклик методів класу та перевірка балансу
-console.log(account1.getBalance()); // 1000
-
-account1.deposit(500);
-console.log(account1.getBalance()); // 1500
-
-account1.withdraw(200);
-console.log(account1.getBalance()); // 1300
+// Запускаємо таймер
+startTimer();
