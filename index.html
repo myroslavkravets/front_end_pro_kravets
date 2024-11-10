@@ -10,15 +10,24 @@
 </head>
 <body>
 
-<div class="weather-widget">
-    <h1>Погода зараз</h1>
-    <div id="weather-info">
-        <p id="temperature"></p>
-        <p id="humidity"></p>
-        <p id="pressure"></p>
-        <p id="wind"></p>
-    </div>
-    <button id="update-weather">Оновити погоду</button>
+<h1>Пости з JSONPlaceholder</h1>
+
+<form id="postForm">
+    <h3>Створити новий пост</h3>
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" required>
+    <br>
+    <label for="body">Текст:</label>
+    <textarea id="body" required></textarea>
+    <br>
+    <button type="submit">Створити пост</button>
+</form>
+
+<p id="message"></p>
+
+<div id="postsContainer"></div>
+
+
 </div>
 
 </body>
