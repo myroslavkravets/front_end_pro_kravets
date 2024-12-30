@@ -1,1 +1,0 @@
-(()=>{"use strict";console.log("Hello from Module 1!"),console.log("Goodbye from Module 2!"),console.log("This is the main JS file!"),console.log("Hello, ".concat("Alex"))})();
